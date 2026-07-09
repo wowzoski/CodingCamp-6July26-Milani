@@ -159,8 +159,73 @@ function validateTransaction(itemName, amount, category) {
   };
 }
 
-// validateCategoryName(name, existingCategories)  [opsional — task 13.1]
 // validateSpendingLimit(value)                    [opsional — task 16.1]
+
+// === TASK 13.1: Custom Categories ===
+const CATEGORIES_KEY = 'ebv_categories';
+const DEFAULT_CATEGORIES = ['Food', 'Transport', 'Fun'];
+
+function getCategories() {
+  try {
+    const raw = localStorage.getItem(CATEGORIES_KEY);
+    if (!raw) return [...DEFAULT_CATEGORIES];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [...DEFAULT_CATEGORIES];
+  } catch (e) {
+    return [...DEFAULT_CATEGORIES];
+  }
+}
+
+function saveCategories(categories) {
+  try {
+    localStorage.setItem(CATEGORIES_KEY, JSON.stringify(categories));
+  } catch (e) { /* silent */ }
+}
+
+function validateCategoryName(name, existingCategories) {
+  const trimmed = typeof name === 'string' ? name.trim() : '';
+  const errors = {};
+  if (trimmed.length === 0) {
+    errors.categoryName = 'Nama kategori tidak boleh kosong.';
+  } else if (trimmed.length > 30) {
+    errors.categoryName = 'Nama kategori tidak boleh lebih dari 30 karakter.';
+  } else if (existingCategories.some(c => c.toLowerCase() === trimmed.toLowerCase())) {
+    errors.categoryName = 'Kategori sudah ada.';
+  }
+  return { isValid: Object.keys(errors).length === 0, errors };
+}
+
+function addCustomCategory(name) {
+  const categories = getCategories();
+  const result = validateCategoryName(name, categories);
+  if (!result.isValid) {
+    showError(result.errors.categoryName, 'error-custom-category');
+    return false;
+  }
+  categories.push(name.trim());
+  saveCategories(categories);
+  renderCategoryOptions();
+  // Clear the input
+  const input = document.getElementById('input-custom-category');
+  if (input) input.value = '';
+  return true;
+}
+
+function renderCategoryOptions() {
+  const select = document.getElementById('input-category');
+  if (!select) return;
+  const categories = getCategories();
+  // Keep the placeholder option, replace the rest
+  const placeholder = select.options[0];
+  select.innerHTML = '';
+  select.appendChild(placeholder);
+  categories.forEach(function(cat) {
+    const opt = document.createElement('option');
+    opt.value = cat;
+    opt.textContent = cat;
+    select.appendChild(opt);
+  });
+}
 
 
 // ============================================================================
@@ -339,13 +404,60 @@ function renderTransactionList() {
   });
 }
 
+// === TASK 14.1: Monthly Summary ===
+
+/**
+ * Groups transactions by month-year and sums amounts.
+ * @param {Array} transactions
+ * @returns {Object} Map of "YYYY-MM" → total amount
+ */
+function groupByMonth(transactions) {
+  const result = {};
+  transactions.forEach(function(t) {
+    const d = new Date(t.timestamp);
+    const key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+    result[key] = (result[key] || 0) + t.amount;
+  });
+  return result;
+}
+
+/**
+ * Renders monthly summary section.
+ */
+function renderMonthlySummary() {
+  const container = document.getElementById('monthly-summary-list');
+  if (!container) return;
+
+  const grouped = groupByMonth(AppState.transactions);
+  const keys = Object.keys(grouped).sort().reverse(); // newest first
+
+  if (keys.length === 0) {
+    container.innerHTML = '<p class="summary-empty">Belum ada data ringkasan.</p>';
+    return;
+  }
+
+  const monthNames = ['Januari','Februari','Maret','April','Mei','Juni',
+                      'Juli','Agustus','September','Oktober','November','Desember'];
+
+  container.innerHTML = keys.map(function(key) {
+    const parts = key.split('-');
+    const year = parts[0];
+    const month = monthNames[parseInt(parts[1], 10) - 1];
+    return '<div class="summary-item">' +
+      '<span class="summary-month">' + month + ' ' + year + '</span>' +
+      '<span class="summary-total">' + formatRupiah(grouped[key]) + '</span>' +
+    '</div>';
+  }).join('');
+}
+
 /**
  * Merender ulang semua komponen UI: balance, daftar transaksi, dan chart.
  */
 function renderAll() {
   renderBalance();
   renderTransactionList();
-  if (typeof renderChart === 'function') renderChart();
+  renderChart(AppState.transactions);
+  renderMonthlySummary();
 }
 
 /**
@@ -408,16 +520,177 @@ function prepareChartData(transactions) {
   return { labels, data, colors };
 }
 
-// TODO: Implementasi renderChart(transactions)
+/**
+ * Merender atau memperbarui pie chart pengeluaran per kategori.
+ *
+ * Lifecycle:
+ *   1. Jika Chart.js tidak tersedia (CDN gagal), tampilkan error dan sembunyikan
+ *      #chart-section agar form & daftar transaksi tetap berfungsi.
+ *   2. Jika ada instance chart sebelumnya, hancurkan dulu (.destroy()) untuk
+ *      mencegah memory leak pada canvas.
+ *   3. Jika tidak ada transaksi, sembunyikan canvas dan tampilkan pesan kosong.
+ *   4. Buat instance Chart.js baru dengan konfigurasi pie chart lengkap.
+ *
+ * @param {Array} transactions - Array objek Transaction dari AppState
+ */
+function renderChart(transactions) {
+  // --- 1. CDN fallback: Chart.js tidak tersedia ---
+  if (typeof Chart === 'undefined') {
+    showError(
+      'Visualisasi tidak tersedia. Chart.js gagal dimuat.',
+      'chart-error'
+    );
+    const chartSection = document.getElementById('chart-section');
+    if (chartSection) chartSection.style.display = 'none';
+    return;
+  }
+
+  // --- 2. Hancurkan instance lama untuk mencegah memory leak canvas ---
+  if (AppState.chartInstance) {
+    AppState.chartInstance.destroy();
+    AppState.chartInstance = null;
+  }
+
+  const canvas = document.getElementById('expense-chart');
+  const emptyMsg = document.getElementById('chart-empty-message');
+
+  // --- 3. Tidak ada transaksi: tampilkan pesan kosong, sembunyikan canvas ---
+  if (!transactions || transactions.length === 0) {
+    if (canvas) canvas.style.display = 'none';
+    if (emptyMsg) emptyMsg.hidden = false;
+    return;
+  }
+
+  // Ada transaksi: tampilkan canvas, sembunyikan pesan kosong
+  if (canvas) canvas.style.display = 'block';
+  if (emptyMsg) emptyMsg.hidden = true;
+
+  if (!canvas) return;
+
+  // --- 4. Siapkan data dan buat Chart.js instance baru ---
+  const chartData = prepareChartData(transactions);
+  const ctx = canvas.getContext('2d');
+
+  AppState.chartInstance = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: chartData.labels,
+      datasets: [{
+        data: chartData.data,
+        backgroundColor: chartData.colors,
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          position: 'bottom'
+        },
+        tooltip: {
+          callbacks: {
+            /**
+             * Label callback: tampilkan nilai formatRupiah + persentase 1 desimal.
+             * Contoh: "Food: Rp 125.000 (45.2%)"
+             */
+            label: function(context) {
+              const total = context.dataset.data.reduce(function(a, b) {
+                return a + b;
+              }, 0);
+              const pct = ((context.raw / total) * 100).toFixed(1);
+              return context.label + ': ' + formatRupiah(context.raw) + ' (' + pct + '%)';
+            }
+          }
+        }
+      }
+    }
+  });
+}
 
 
 // ============================================================================
 // === EVENT HANDLERS & INIT (task 10.x) ===
 // ============================================================================
 
-// TODO: Implementasi handleFormSubmit(event)
-// TODO: Implementasi handleDeleteTransaction(id)
-// TODO: Implementasi init()
-// TODO: document.addEventListener('DOMContentLoaded', init)
-// TODO: window.addEventListener('load', ...) untuk CDN Chart.js fallback
+// === TASK 10.1: handleFormSubmit ===
+function handleFormSubmit(event) {
+  event.preventDefault();
+
+  // Read form values
+  const itemName = document.getElementById('input-item-name').value;
+  const amount   = document.getElementById('input-amount').value;
+  const category = document.getElementById('input-category').value;
+
+  // Clear previous errors
+  clearErrors();
+
+  // Validate
+  const result = validateTransaction(itemName, amount, category);
+
+  if (!result.isValid) {
+    // Show per-field errors
+    if (result.errors.itemName) showError(result.errors.itemName, 'error-itemName');
+    if (result.errors.amount)   showError(result.errors.amount,   'error-amount');
+    if (result.errors.category) showError(result.errors.category, 'error-category');
+    return;
+  }
+
+  // Create transaction and reset form
+  createTransaction(itemName, Number(amount), category);
+
+  document.getElementById('input-item-name').value = '';
+  document.getElementById('input-amount').value    = '';
+  document.getElementById('input-category').value  = '';
+}
+
+// === TASK 10.1: handleDeleteTransaction ===
+function handleDeleteTransaction(id) {
+  deleteTransaction(id);
+}
+
+// === TASK 10.3: init ===
+function init() {
+  const result = loadTransactions();
+
+  if (result.error) {
+    showError(result.error, 'error-global');
+  }
+
+  AppState.transactions = result.transactions || [];
+
+  // Attach form submit handler
+  const form = document.getElementById('transaction-form');
+  if (form) form.addEventListener('submit', handleFormSubmit);
+
+  // Delegated click handler on transaction list for delete buttons
+  const list = document.getElementById('transaction-list');
+  if (list) {
+    list.addEventListener('click', function(event) {
+      const btn = event.target.closest('.btn-delete');
+      if (btn) {
+        const id = btn.getAttribute('data-id');
+        if (id) handleDeleteTransaction(id);
+      }
+    });
+  }
+
+  // Initial render
+  renderAll();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+
+/**
+ * Setelah semua resource (termasuk CDN scripts) selesai dimuat,
+ * periksa apakah Chart.js berhasil dimuat.
+ * Jika tidak, tampilkan pesan error di area chart dan sembunyikan section-nya.
+ */
+window.addEventListener('load', function() {
+  if (typeof Chart === 'undefined') {
+    showError(
+      'Visualisasi tidak tersedia. Chart.js gagal dimuat.',
+      'chart-error'
+    );
+    const chartSection = document.getElementById('chart-section');
+    if (chartSection) chartSection.style.display = 'none';
+  }
+});
 

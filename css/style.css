@@ -138,3 +138,153 @@ img {
   max-height: 400px;
   overflow-y: auto;
 }
+
+/* ==========================================================================
+   Task 11.1 — Hover/Tap States, Transitions & Supporting UI Styles
+   Requirements: 1.3, 2.4, 3.5, 5.4, 6.4
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Global Interactive Transitions
+   All interactive elements get a smooth base transition
+   -------------------------------------------------------------------------- */
+button,
+input,
+select,
+textarea {
+  transition: all 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Input & Select Focus States
+   -------------------------------------------------------------------------- */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--color-brown-primary);
+  border-color: var(--color-brown-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Submit Button — Base, Hover & Active States
+   -------------------------------------------------------------------------- */
+#transaction-form button[type="submit"] {
+  background-color: var(--color-brown-primary);
+  color: #F5F0E8;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  width: 100%;
+  margin-top: var(--spacing-sm);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#transaction-form button[type="submit"]:hover {
+  background-color: var(--color-brown-dark);
+}
+
+#transaction-form button[type="submit"]:active {
+  transform: scale(0.98);
+  background-color: var(--color-brown-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Delete Button (per transaction item)
+   -------------------------------------------------------------------------- */
+.btn-delete {
+  background-color: var(--color-terracotta);
+  color: #F5F0E8;
+  border: none;
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-delete:hover {
+  background-color: var(--color-terracotta-dark);
+}
+
+.btn-delete:active {
+  transform: scale(0.97);
+}
+
+/* --------------------------------------------------------------------------
+   Error Message — Inline field errors
+   -------------------------------------------------------------------------- */
+.error-message {
+  color: var(--color-terracotta-dark);
+  font-size: 0.8rem;
+  display: none;
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   Error Banner — Global error notification
+   -------------------------------------------------------------------------- */
+.error-banner {
+  background-color: #FBEDE8;
+  border: 1px solid var(--color-terracotta);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  display: none;
+  margin-bottom: 1rem;
+  color: var(--color-terracotta-dark);
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------------------------------
+   Empty State Messages
+   -------------------------------------------------------------------------- */
+#list-empty-message,
+#chart-empty-message {
+  color: var(--color-brown-primary);
+  text-align: center;
+  font-style: italic;
+  opacity: 0.7;
+  padding: 1rem;
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Transaction Item Layout
+   -------------------------------------------------------------------------- */
+.transaction-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(164, 113, 72, 0.15);
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+/* Item name stretches to fill available space */
+.transaction-name {
+  flex-grow: 1;
+  font-size: 0.95rem;
+}
+
+/* Amount displayed in brown with emphasis */
+.transaction-amount {
+  font-weight: 600;
+  color: var(--color-brown-primary);
+  white-space: nowrap;
+}
+
+/* Category pill/badge */
+.transaction-category {
+  background-color: rgba(164, 113, 72, 0.12);
+  color: var(--color-brown-dark);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 99px;
+  white-space: nowrap;
+}
