@@ -1,0 +1,140 @@
+/* Expense & Budget Visualizer — stylesheet stub */
+/* CSS custom properties, base styles, layout, and component styles
+   will be implemented in tasks 2.1 and 2.2 */
+
+/* ==========================================================================
+   Task 2.1 — CSS Custom Properties & Base Styles
+   Requirements: 6.4, 6.6
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Custom Properties (Earth Tone Palette)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Color palette */
+  --color-bg:               #F5F0E8; /* Page background */
+  --color-card:             #EFE6D8; /* Card background */
+  --color-brown-primary:    #A47148; /* Buttons, accents */
+  --color-brown-dark:       #6F4E37; /* Header, dark text */
+  --color-sage:             #8A9A5B; /* Transport category */
+  --color-sage-dark:        #6B7A5E; /* Sage hover state */
+  --color-terracotta:       #C97C5D; /* Fun category */
+  --color-terracotta-dark:  #B5654A; /* Fallback, hover */
+
+  /* Typography */
+  --font-family-base: 'Poppins', 'Nunito', sans-serif;
+  --font-size-base:   16px;
+  --line-height-base: 1.6;
+
+  /* Spacing */
+  --spacing-sm:  0.5rem;
+  --spacing-md:  1rem;
+  --spacing-lg:  1.5rem;
+  --spacing-xl:  2rem;
+}
+
+/* --------------------------------------------------------------------------
+   Box-sizing & Reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Base Typography & Page Background
+   -------------------------------------------------------------------------- */
+html {
+  font-size: var(--font-size-base);
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: 1rem;
+  line-height: var(--line-height-base);
+  background-color: var(--color-bg);
+  color: var(--color-brown-dark);
+  min-height: 100vh;
+  padding: var(--spacing-md);
+}
+
+/* --------------------------------------------------------------------------
+   Base element defaults
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =============================================
+   Task 2.2 — Layout grid dan card styles
+   Requirements: 6.1, 6.2, 6.3, 6.5, 3.3, 4.6
+   ============================================= */
+
+/* Mobile-first grid layout */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Desktop breakpoint: Input_Form dan Chart berdampingan */
+@media (min-width: 768px) {
+  .main-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Card component */
+.card {
+  background: #EFE6D8;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(111, 78, 55, 0.1);
+  padding: 1.25rem;
+}
+
+/* Balance display header */
+#balance-display {
+  background: #6F4E37;
+  color: #F5F0E8;
+}
+
+/* Balance amount dengan fluid typography */
+#balance-amount {
+  font-size: clamp(24px, 5vw, 48px);
+}
+
+/* Transaction list dengan scroll */
+#transaction-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
