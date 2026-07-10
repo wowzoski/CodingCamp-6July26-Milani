@@ -38,7 +38,7 @@
     },
     "16.2 Tulis property test untuk spending limit threshold detection (Property 14)": {
       "status": "passed",
-      "lastRunTimestamp": 1783656588285
+      "lastRunTimestamp": 1783666267352
     }
   },
   "executionHistory": {
@@ -387,6 +387,16 @@
         "executionId": "51ad3126-ad07-4792-9fed-193a5ff4064d",
         "chatSessionId": "sess_2fd4596f-f787-4e37-9133-63d05cf5175d",
         "timestamp": 1783611708644
+      },
+      {
+        "executionId": "0bcc131a-f8c0-4f2a-abc2-8d1f2228e22a",
+        "chatSessionId": "sess_28f52801-83e0-4696-ac84-c2828231e726",
+        "timestamp": 1783666316801
+      },
+      {
+        "executionId": "0bcc131a-f8c0-4f2a-abc2-8d1f2228e22a",
+        "chatSessionId": "sess_28f52801-83e0-4696-ac84-c2828231e726",
+        "timestamp": 1783666371280
       }
     ],
     "16.1 Implementasi `validateSpendingLimit`, UI batas pengeluaran, dan highlight visual": [
@@ -399,6 +409,16 @@
         "executionId": "51ad3126-ad07-4792-9fed-193a5ff4064d",
         "chatSessionId": "sess_2fd4596f-f787-4e37-9133-63d05cf5175d",
         "timestamp": 1783611709532
+      },
+      {
+        "executionId": "efd6ce1e-824b-4bdd-9eec-c5f4006db159",
+        "chatSessionId": "sess_28f52801-83e0-4696-ac84-c2828231e726",
+        "timestamp": 1783666447456
+      },
+      {
+        "executionId": "efd6ce1e-824b-4bdd-9eec-c5f4006db159",
+        "chatSessionId": "sess_28f52801-83e0-4696-ac84-c2828231e726",
+        "timestamp": 1783666453980
       }
     ],
     "17.1 Implementasi toggle tema dan persistensi preferensi": [
@@ -411,6 +431,16 @@
         "executionId": "51ad3126-ad07-4792-9fed-193a5ff4064d",
         "chatSessionId": "sess_2fd4596f-f787-4e37-9133-63d05cf5175d",
         "timestamp": 1783611710474
+      },
+      {
+        "executionId": "f419381e-2988-4f73-b3c3-7f7aa1207558",
+        "chatSessionId": "sess_28f52801-83e0-4696-ac84-c2828231e726",
+        "timestamp": 1783666138163
+      },
+      {
+        "executionId": "f419381e-2988-4f73-b3c3-7f7aa1207558",
+        "chatSessionId": "sess_28f52801-83e0-4696-ac84-c2828231e726",
+        "timestamp": 1783666204481
       }
     ],
     "1. Project scaffold": [
@@ -750,6 +780,27 @@
         "executionId": "66cef297-1758-45bb-b629-0f1d6662fbd1",
         "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
         "timestamp": 1783659852239
+      }
+    ],
+    "17. Dark/light mode": [
+      {
+        "executionId": "f419381e-2988-4f73-b3c3-7f7aa1207558",
+        "chatSessionId": "sess_28f52801-83e0-4696-ac84-c2828231e726",
+        "timestamp": 1783666204918
+      }
+    ],
+    "15. Sort transactions": [
+      {
+        "executionId": "0bcc131a-f8c0-4f2a-abc2-8d1f2228e22a",
+        "chatSessionId": "sess_28f52801-83e0-4696-ac84-c2828231e726",
+        "timestamp": 1783666371702
+      }
+    ],
+    "16. Spending limit": [
+      {
+        "executionId": "efd6ce1e-824b-4bdd-9eec-c5f4006db159",
+        "chatSessionId": "sess_28f52801-83e0-4696-ac84-c2828231e726",
+        "timestamp": 1783666454114
       }
     ]
   }

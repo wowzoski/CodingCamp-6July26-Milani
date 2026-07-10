@@ -199,8 +199,8 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - Untuk sembarang array transaksi, setiap key di hasil `groupByMonth` harus berformat `"YYYY-MM"` dan nilai-nya harus sama persis dengan sum amount transaksi di bulan tersebut
     - **Validates: Requirements 10.3**
 
-- [ ] 15. Sort transactions
-  - [ ] 15.1 Implementasi UI sort dan logika pengurutan
+- [x] 15. Sort transactions
+  - [x] 15.1 Implementasi UI sort dan logika pengurutan
     - Tambahkan `<select>` sort di atas `Transaction_List` (opsi: default, Amount ↑, Amount ↓, Category A–Z)
     - Implementasi logika sort di `renderTransactionList` berdasarkan pilihan sort aktif
     - Sort harus tampil dalam < 1 detik
@@ -210,8 +210,8 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - Untuk sembarang array dengan ≥ 2 elemen, sort amount ascending harus menghasilkan `a[i].amount <= a[i+1].amount`; sort category A–Z harus menghasilkan `localeCompare <= 0`
     - **Validates: Requirements 10.4**
 
-- [ ] 16. Spending limit
-  - [ ] 16.1 Implementasi `validateSpendingLimit`, UI batas pengeluaran, dan highlight visual
+- [x] 16. Spending limit
+  - [x] 16.1 Implementasi `validateSpendingLimit`, UI batas pengeluaran, dan highlight visual
     - Tambahkan form kecil untuk menetapkan spending limit per kategori (nilai Rp 1 – Rp 999.999.999)
     - Implementasi `validateSpendingLimit(value)`: valid jika number, > 0, <= 999999999
     - Simpan batas ke `localStorage` (key `ebv_limits`)
@@ -223,8 +223,8 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - Untuk sembarang pasangan positif (categoryTotal, limit), `isOverLimit(categoryTotal, limit)` harus `true` jika dan hanya jika `categoryTotal > limit`
     - **Validates: Requirements 10.5**
 
-- [ ] 17. Dark/light mode
-  - [ ] 17.1 Implementasi toggle tema dan persistensi preferensi
+- [x] 17. Dark/light mode
+  - [x] 17.1 Implementasi toggle tema dan persistensi preferensi
     - Tambahkan tombol toggle tema (ikon matahari/bulan) di header
     - Implementasi `saveThemePreference(mode)` dan `loadThemePreference()`; mode disimpan di `localStorage` key `ebv_theme`
     - Terapkan tema dengan menambah/hapus class `.dark-mode` pada `<body>` atau `<html>`

@@ -311,6 +311,39 @@ textarea:focus {
   white-space: nowrap;
 }
 
+/* --------------------------------------------------------------------------
+   Custom Category Row — input + "Tambah Kategori" button
+   -------------------------------------------------------------------------- */
+.custom-category-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.custom-category-row input[type="text"] {
+  flex: 1;
+}
+
+#btn-add-category {
+  background-color: var(--color-brown-primary);
+  color: #F5F0E8;
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#btn-add-category:hover {
+  background-color: var(--color-brown-dark);
+}
+
+#btn-add-category:active {
+  transform: scale(0.97);
+}
+
 /* ==========================================================================
    Task 14.1 — Monthly Summary styles
    Requirements: 10.3
@@ -605,6 +638,11 @@ body.dark-mode h2 {
 
 body.dark-mode #btn-theme-toggle {
   border-color: rgba(245, 240, 232, 0.4);
+  color: #F5F0E8;
+}
+
+body.dark-mode #btn-add-category {
+  background-color: var(--color-brown-primary);
   color: #F5F0E8;
 }
 
