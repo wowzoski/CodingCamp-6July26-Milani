@@ -565,8 +565,18 @@ body.dark-mode textarea {
   border-color: rgba(245, 240, 232, 0.25);
 }
 
-body.dark-mode input::placeholder {
-  color: rgba(245, 240, 232, 0.45);
+/* Override spesifisitas tinggi dari #transaction-form input di dark mode */
+body.dark-mode #transaction-form input[type="text"],
+body.dark-mode #transaction-form input[type="number"],
+body.dark-mode #transaction-form select {
+  background-color: #4A3C2C;
+  color: #F5F0E8;
+  border-color: rgba(245, 240, 232, 0.25);
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: rgba(245, 240, 232, 0.6);
 }
 
 body.dark-mode .transaction-item {
