@@ -19,6 +19,26 @@
     "10.2 Tulis property test untuk form reset after valid submission (Property 3)": {
       "status": "passed",
       "lastRunTimestamp": 1783611505088
+    },
+    "13.2 Tulis property test untuk custom category name validation (Property 11)": {
+      "status": "passed",
+      "lastRunTimestamp": 1783656275718
+    },
+    "14.2 Tulis property test untuk monthly grouping aggregation (Property 12)": {
+      "status": "passed",
+      "lastRunTimestamp": 1783656304148
+    },
+    "15.2 Tulis property test untuk sort order invariant (Property 13)": {
+      "status": "passed",
+      "lastRunTimestamp": 1783656287915
+    },
+    "17.2 Tulis property test untuk dark/light mode preference persistence (Property 15)": {
+      "status": "passed",
+      "lastRunTimestamp": 1783656304625
+    },
+    "16.2 Tulis property test untuk spending limit threshold detection (Property 14)": {
+      "status": "passed",
+      "lastRunTimestamp": 1783656588285
     }
   },
   "executionHistory": {
@@ -607,6 +627,16 @@
         "executionId": "112e9966-5cf6-4d6f-8fe5-b689bd57ad96",
         "chatSessionId": "sess_2b2a5717-2808-4d73-8416-210c4be2f959",
         "timestamp": 1783610171165
+      },
+      {
+        "executionId": "87d33a63-02f2-4dda-8bbf-9177de4dc016",
+        "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
+        "timestamp": 1783656213868
+      },
+      {
+        "executionId": "87d33a63-02f2-4dda-8bbf-9177de4dc016",
+        "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
+        "timestamp": 1783656607149
       }
     ],
     "14.2 Tulis property test untuk monthly grouping aggregation (Property 12)": [
@@ -614,6 +644,16 @@
         "executionId": "112e9966-5cf6-4d6f-8fe5-b689bd57ad96",
         "chatSessionId": "sess_2b2a5717-2808-4d73-8416-210c4be2f959",
         "timestamp": 1783610171220
+      },
+      {
+        "executionId": "87d33a63-02f2-4dda-8bbf-9177de4dc016",
+        "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
+        "timestamp": 1783656218364
+      },
+      {
+        "executionId": "87d33a63-02f2-4dda-8bbf-9177de4dc016",
+        "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
+        "timestamp": 1783656611891
       }
     ],
     "15.2 Tulis property test untuk sort order invariant (Property 13)": [
@@ -621,6 +661,16 @@
         "executionId": "112e9966-5cf6-4d6f-8fe5-b689bd57ad96",
         "chatSessionId": "sess_2b2a5717-2808-4d73-8416-210c4be2f959",
         "timestamp": 1783610171284
+      },
+      {
+        "executionId": "87d33a63-02f2-4dda-8bbf-9177de4dc016",
+        "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
+        "timestamp": 1783656223945
+      },
+      {
+        "executionId": "87d33a63-02f2-4dda-8bbf-9177de4dc016",
+        "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
+        "timestamp": 1783656616879
       }
     ],
     "16.2 Tulis property test untuk spending limit threshold detection (Property 14)": [
@@ -628,6 +678,16 @@
         "executionId": "112e9966-5cf6-4d6f-8fe5-b689bd57ad96",
         "chatSessionId": "sess_2b2a5717-2808-4d73-8416-210c4be2f959",
         "timestamp": 1783610171347
+      },
+      {
+        "executionId": "87d33a63-02f2-4dda-8bbf-9177de4dc016",
+        "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
+        "timestamp": 1783656228817
+      },
+      {
+        "executionId": "87d33a63-02f2-4dda-8bbf-9177de4dc016",
+        "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
+        "timestamp": 1783656621386
       }
     ],
     "17.2 Tulis property test untuk dark/light mode preference persistence (Property 15)": [
@@ -635,6 +695,16 @@
         "executionId": "112e9966-5cf6-4d6f-8fe5-b689bd57ad96",
         "chatSessionId": "sess_2b2a5717-2808-4d73-8416-210c4be2f959",
         "timestamp": 1783610171410
+      },
+      {
+        "executionId": "87d33a63-02f2-4dda-8bbf-9177de4dc016",
+        "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
+        "timestamp": 1783656234616
+      },
+      {
+        "executionId": "87d33a63-02f2-4dda-8bbf-9177de4dc016",
+        "chatSessionId": "sess_3b8fa7a7-cf01-4feb-8883-04f9422e7711",
+        "timestamp": 1783656626481
       }
     ],
     "9. Chart module": [

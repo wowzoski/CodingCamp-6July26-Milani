@@ -183,7 +183,7 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - Tambahkan `<option>` baru ke dropdown secara dinamis
     - Tampilkan `Error_Notification` jika nama kosong, > 30 karakter, atau duplikat
     - _Requirements: 10.1, 10.2_
-  - [~] 13.2 Tulis property test untuk custom category name validation (Property 11)
+  - [x] 13.2 Tulis property test untuk custom category name validation (Property 11)
     - **Property 11: Custom category name validation**
     - `validateCategoryName` harus `isValid: true` jika dan hanya jika trim length 1–30 dan tidak duplikat case-insensitive
     - **Validates: Requirements 10.1, 10.2**
@@ -194,7 +194,7 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - Render ringkasan di section baru di bawah `Transaction_List`
     - Format total dengan `formatRupiah`
     - _Requirements: 10.3_
-  - [~] 14.2 Tulis property test untuk monthly grouping aggregation (Property 12)
+  - [x] 14.2 Tulis property test untuk monthly grouping aggregation (Property 12)
     - **Property 12: Monthly grouping aggregation**
     - Untuk sembarang array transaksi, setiap key di hasil `groupByMonth` harus berformat `"YYYY-MM"` dan nilai-nya harus sama persis dengan sum amount transaksi di bulan tersebut
     - **Validates: Requirements 10.3**
@@ -205,7 +205,7 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - Implementasi logika sort di `renderTransactionList` berdasarkan pilihan sort aktif
     - Sort harus tampil dalam < 1 detik
     - _Requirements: 10.4_
-  - [~] 15.2 Tulis property test untuk sort order invariant (Property 13)
+  - [x] 15.2 Tulis property test untuk sort order invariant (Property 13)
     - **Property 13: Sort order invariant**
     - Untuk sembarang array dengan ≥ 2 elemen, sort amount ascending harus menghasilkan `a[i].amount <= a[i+1].amount`; sort category A–Z harus menghasilkan `localeCompare <= 0`
     - **Validates: Requirements 10.4**
@@ -218,7 +218,7 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - Tambahkan logika di `renderTransactionList` atau `renderChart` untuk highlight kategori yang melebihi batas
     - Tampilkan `Error_Notification` untuk input batas yang tidak valid
     - _Requirements: 10.5, 10.6_
-  - [~] 16.2 Tulis property test untuk spending limit threshold detection (Property 14)
+  - [x] 16.2 Tulis property test untuk spending limit threshold detection (Property 14)
     - **Property 14: Spending limit threshold detection**
     - Untuk sembarang pasangan positif (categoryTotal, limit), `isOverLimit(categoryTotal, limit)` harus `true` jika dan hanya jika `categoryTotal > limit`
     - **Validates: Requirements 10.5**
@@ -231,7 +231,7 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - Definisikan CSS variables override untuk dark mode: palet earth tone gelap dengan kontras minimum WCAG 4.5:1
     - Transisi tema dalam < 500ms menggunakan CSS `transition`
     - _Requirements: 10.7_
-  - [~] 17.2 Tulis property test untuk dark/light mode preference persistence (Property 15)
+  - [x] 17.2 Tulis property test untuk dark/light mode preference persistence (Property 15)
     - **Property 15: Dark/light mode preference persistence**
     - Untuk sembarang nilai `"light"` atau `"dark"`, `saveThemePreference` lalu `loadThemePreference` harus mengembalikan nilai yang sama
     - **Validates: Requirements 10.7**

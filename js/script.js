@@ -660,6 +660,22 @@ function init() {
   const form = document.getElementById('transaction-form');
   if (form) form.addEventListener('submit', handleFormSubmit);
 
+  // Attach custom category button handler
+  const btnAddCategory = document.getElementById('btn-add-category');
+  if (btnAddCategory) {
+    btnAddCategory.addEventListener('click', function() {
+      const input = document.getElementById('input-custom-category');
+      const name = input ? input.value : '';
+      // Clear previous custom category error before attempting to add
+      const errEl = document.getElementById('error-custom-category');
+      if (errEl) { errEl.textContent = ''; errEl.style.display = 'none'; }
+      addCustomCategory(name);
+    });
+  }
+
+  // Render category options from storage (picks up any persisted custom categories)
+  renderCategoryOptions();
+
   // Delegated click handler on transaction list for delete buttons
   const list = document.getElementById('transaction-list');
   if (list) {

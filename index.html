@@ -73,6 +73,23 @@
           <span class="error-message" id="error-category" role="alert"></span>
         </div>
 
+        <div class="form-group">
+          <label for="input-custom-category">Tambah Kategori Baru</label>
+          <div class="custom-category-row">
+            <input
+              type="text"
+              id="input-custom-category"
+              name="customCategory"
+              maxlength="30"
+              placeholder="Nama kategori baru..."
+              autocomplete="off"
+              aria-describedby="error-custom-category"
+            />
+            <button type="button" id="btn-add-category">Tambah Kategori</button>
+          </div>
+          <span class="error-message" id="error-custom-category" role="alert"></span>
+        </div>
+
         <button type="submit">Tambah</button>
       </form>
     </section>
@@ -90,11 +107,28 @@
   <!-- 3. Transaction List -->
   <section id="transaction-list-section" class="card">
     <h2>Riwayat Transaksi</h2>
+    <div class="sort-controls">
+      <label for="sort-order">Urutkan:</label>
+      <select id="sort-order" aria-label="Pilih urutan transaksi">
+        <option value="default">Default</option>
+        <option value="amount-asc">Amount ↑</option>
+        <option value="amount-desc">Amount ↓</option>
+        <option value="category-asc">Category A–Z</option>
+      </select>
+    </div>
     <ul id="transaction-list" aria-label="Daftar transaksi"></ul>
     <p id="list-empty-message">Belum ada transaksi.</p>
   </section>
 
-  <!-- 4. Global error banner -->
+  <!-- 4. Monthly Summary -->
+  <section id="monthly-summary-section" class="card">
+    <h2>Ringkasan Bulanan</h2>
+    <div id="monthly-summary-list">
+      <p class="summary-empty">Belum ada data ringkasan.</p>
+    </div>
+  </section>
+
+  <!-- 5. Global error banner -->
   <div id="error-global" class="error-banner" role="alert" aria-live="polite"></div>
 
   <!-- App Script -->
