@@ -19,6 +19,7 @@
   <header id="balance-display">
     <p>Total Pengeluaran</p>
     <h1 id="balance-amount">Rp 0</h1>
+    <button type="button" id="btn-theme-toggle" aria-label="Toggle tema gelap/terang">🌙</button>
   </header>
 
   <!-- 2. Main content grid: Input Form + Chart side by side on desktop -->
@@ -88,6 +89,7 @@
             <button type="button" id="btn-add-category">Tambah Kategori</button>
           </div>
           <span class="error-message" id="error-custom-category" role="alert"></span>
+          <div id="custom-category-tags"></div>
         </div>
 
         <button type="submit">Tambah</button>
@@ -128,8 +130,36 @@
     </div>
   </section>
 
-  <!-- 5. Global error banner -->
+  <!-- 5. Spending Limit -->
+  <section id="spending-limit-section" class="card">
+    <h2>Batas Pengeluaran</h2>
+    <div class="limit-form-row">
+      <select id="input-limit-category" aria-label="Pilih kategori batas">
+        <option value="">Pilih kategori...</option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Fun">Fun</option>
+      </select>
+      <input
+        type="number"
+        id="input-limit-amount"
+        min="1"
+        max="999999999"
+        step="1"
+        placeholder="Contoh: 500000"
+        aria-label="Jumlah batas pengeluaran"
+      />
+      <button type="button" id="btn-set-limit">Simpan Batas</button>
+    </div>
+    <span class="error-message" id="error-limit" role="alert"></span>
+    <div id="limit-list"></div>
+  </section>
+
+  <!-- 6. Global error banner -->
   <div id="error-global" class="error-banner" role="alert" aria-live="polite"></div>
+
+  <!-- 7. Over-limit alert banner -->
+  <div id="over-limit-alert" class="over-limit-alert" role="alert" aria-live="polite"></div>
 
   <!-- App Script -->
   <script src="js/script.js"></script>

@@ -156,6 +156,28 @@ textarea {
 }
 
 /* --------------------------------------------------------------------------
+   Form Input & Select Base Styles
+   Match the styled text boxes used in the Batas Pengeluaran section
+   -------------------------------------------------------------------------- */
+#transaction-form input[type="text"],
+#transaction-form input[type="number"],
+#transaction-form select {
+  width: 100%;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(164, 113, 72, 0.4);
+  border-radius: 6px;
+  background-color: var(--color-bg);
+  color: var(--color-brown-dark);
+  font-size: 0.875rem;
+}
+
+#transaction-form input[type="text"]:hover,
+#transaction-form input[type="number"]:hover,
+#transaction-form select:hover {
+  border-color: var(--color-brown-primary);
+}
+
+/* --------------------------------------------------------------------------
    Input & Select Focus States
    -------------------------------------------------------------------------- */
 input:focus,
@@ -357,4 +379,253 @@ textarea:focus {
 
 #sort-order:hover {
   border-color: var(--color-brown-primary);
+}
+
+/* ==========================================================================
+   Task 15.1 — Sort order select hover state (already has base .sort-controls)
+   ========================================================================== */
+
+/* (base sort-controls styles already defined above) */
+
+/* ==========================================================================
+   Task 16.1 — Spending limit section and over-limit indicator
+   Requirements: 10.5, 10.6
+   ========================================================================== */
+
+/* Over-limit list item: subtle terracotta left border + tinted background */
+.transaction-item.over-limit {
+  border-left: 4px solid var(--color-terracotta);
+  background-color: rgba(201, 124, 93, 0.08);
+  padding-left: 0.5rem;
+}
+
+/* Spending limit form row */
+.limit-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.limit-form-row select,
+.limit-form-row input[type="number"] {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(164, 113, 72, 0.4);
+  border-radius: 6px;
+  background-color: var(--color-bg);
+  color: var(--color-brown-dark);
+  font-size: 0.875rem;
+  flex: 1 1 120px;
+}
+
+#btn-set-limit {
+  background-color: var(--color-brown-primary);
+  color: #F5F0E8;
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+#btn-set-limit:hover {
+  background-color: var(--color-brown-dark);
+}
+
+/* Individual limit display rows */
+.limit-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(164, 113, 72, 0.15);
+  font-size: 0.9rem;
+}
+
+.limit-item:last-child {
+  border-bottom: none;
+}
+
+.limit-category {
+  font-weight: 600;
+  color: var(--color-brown-dark);
+}
+
+.limit-amount {
+  font-weight: 700;
+  color: var(--color-terracotta-dark);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Task 17.1 — Dark/light mode toggle button and dark-mode overrides
+   Requirements: 10.7
+   ========================================================================== */
+
+/* Smooth transition on body for theme switching */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme toggle button — positioned in header top-right */
+#balance-display {
+  position: relative;
+}
+
+#btn-theme-toggle {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: transparent;
+  border: 1px solid rgba(245, 240, 232, 0.5);
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5F0E8;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+#btn-theme-toggle:hover {
+  background-color: rgba(245, 240, 232, 0.15);
+}
+
+#btn-theme-toggle:active {
+  transform: scale(0.93);
+}
+
+/* --------------------------------------------------------------------------
+   Dark mode overrides — earth tone dark palette
+   -------------------------------------------------------------------------- */
+body.dark-mode {
+  background-color: #2C2416;
+  color: #F5F0E8;
+}
+
+body.dark-mode .card {
+  background: #3A2E22;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-mode #balance-display {
+  background: #1E1710;
+  color: #F5F0E8;
+}
+
+body.dark-mode #balance-amount {
+  color: #F5F0E8;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background-color: #4A3C2C;
+  color: #F5F0E8;
+  border-color: rgba(245, 240, 232, 0.25);
+}
+
+body.dark-mode input::placeholder {
+  color: rgba(245, 240, 232, 0.45);
+}
+
+body.dark-mode .transaction-item {
+  border-bottom-color: rgba(245, 240, 232, 0.1);
+}
+
+body.dark-mode .transaction-name {
+  color: #F5F0E8;
+}
+
+body.dark-mode .transaction-amount {
+  color: #D4A574;
+}
+
+body.dark-mode .transaction-category {
+  background-color: rgba(245, 240, 232, 0.1);
+  color: #F5F0E8;
+}
+
+body.dark-mode .summary-month,
+body.dark-mode .limit-category {
+  color: #F5F0E8;
+}
+
+body.dark-mode .summary-total {
+  color: #D4A574;
+}
+
+body.dark-mode .summary-item,
+body.dark-mode .limit-item {
+  border-bottom-color: rgba(245, 240, 232, 0.1);
+}
+
+body.dark-mode #sort-order,
+body.dark-mode .limit-form-row select,
+body.dark-mode .limit-form-row input {
+  background-color: #4A3C2C;
+  color: #F5F0E8;
+  border-color: rgba(245, 240, 232, 0.25);
+}
+
+body.dark-mode .sort-controls label {
+  color: #F5F0E8;
+}
+
+body.dark-mode .error-message {
+  color: #E8957A;
+}
+
+body.dark-mode .error-banner {
+  background-color: #4A2A22;
+  border-color: var(--color-terracotta);
+  color: #E8957A;
+}
+
+body.dark-mode #list-empty-message,
+body.dark-mode #chart-empty-message,
+body.dark-mode .summary-empty {
+  color: rgba(245, 240, 232, 0.55);
+}
+
+body.dark-mode .transaction-item.over-limit {
+  background-color: rgba(201, 124, 93, 0.15);
+}
+
+body.dark-mode h2 {
+  color: #F5F0E8;
+}
+
+body.dark-mode #btn-theme-toggle {
+  border-color: rgba(245, 240, 232, 0.4);
+  color: #F5F0E8;
+}
+
+/* ==========================================================================
+   Over-limit alert banner
+   ========================================================================== */
+
+.over-limit-alert {
+  background-color: #FEF3CD;
+  border: 1px solid #F5A623;
+  color: #7A4F00;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  display: none;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+body.dark-mode .over-limit-alert {
+  background-color: #3D2E00;
+  border-color: #F5A623;
+  color: #FFD580;
 }

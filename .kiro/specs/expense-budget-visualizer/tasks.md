@@ -175,8 +175,8 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
 
 ### Fitur Nice-to-Have (Opsional)
 
-- [ ] 13. Custom categories
-  - [-] 13.1 Implementasi `validateCategoryName` dan UI tambah kategori
+- [x] 13. Custom categories
+  - [x] 13.1 Implementasi `validateCategoryName` dan UI tambah kategori
     - Tambahkan input teks dan tombol "Tambah Kategori" di bawah dropdown kategori di form
     - Implementasi `validateCategoryName(name, existingCategories)`: `name.trim().length >= 1`, `<= 30`, tidak duplikat (case-insensitive)
     - Simpan kategori kustom ke `localStorage` (key terpisah `ebv_categories`)
@@ -188,8 +188,8 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - `validateCategoryName` harus `isValid: true` jika dan hanya jika trim length 1–30 dan tidak duplikat case-insensitive
     - **Validates: Requirements 10.1, 10.2**
 
-- [ ] 14. Monthly summary
-  - [-] 14.1 Implementasi `groupByMonth` dan tampilan ringkasan bulanan
+- [x] 14. Monthly summary
+  - [x] 14.1 Implementasi `groupByMonth` dan tampilan ringkasan bulanan
     - Implementasi `groupByMonth(transactions)`: kelompokkan berdasarkan key `"YYYY-MM"` dari `timestamp`, hitung sum per bulan
     - Render ringkasan di section baru di bawah `Transaction_List`
     - Format total dengan `formatRupiah`
@@ -200,7 +200,7 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - **Validates: Requirements 10.3**
 
 - [ ] 15. Sort transactions
-  - [-] 15.1 Implementasi UI sort dan logika pengurutan
+  - [ ] 15.1 Implementasi UI sort dan logika pengurutan
     - Tambahkan `<select>` sort di atas `Transaction_List` (opsi: default, Amount ↑, Amount ↓, Category A–Z)
     - Implementasi logika sort di `renderTransactionList` berdasarkan pilihan sort aktif
     - Sort harus tampil dalam < 1 detik
@@ -211,7 +211,7 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - **Validates: Requirements 10.4**
 
 - [ ] 16. Spending limit
-  - [-] 16.1 Implementasi `validateSpendingLimit`, UI batas pengeluaran, dan highlight visual
+  - [ ] 16.1 Implementasi `validateSpendingLimit`, UI batas pengeluaran, dan highlight visual
     - Tambahkan form kecil untuk menetapkan spending limit per kategori (nilai Rp 1 – Rp 999.999.999)
     - Implementasi `validateSpendingLimit(value)`: valid jika number, > 0, <= 999999999
     - Simpan batas ke `localStorage` (key `ebv_limits`)
@@ -224,7 +224,7 @@ Implementasi aplikasi web statis satu halaman menggunakan HTML, CSS, dan vanilla
     - **Validates: Requirements 10.5**
 
 - [ ] 17. Dark/light mode
-  - [-] 17.1 Implementasi toggle tema dan persistensi preferensi
+  - [ ] 17.1 Implementasi toggle tema dan persistensi preferensi
     - Tambahkan tombol toggle tema (ikon matahari/bulan) di header
     - Implementasi `saveThemePreference(mode)` dan `loadThemePreference()`; mode disimpan di `localStorage` key `ebv_theme`
     - Terapkan tema dengan menambah/hapus class `.dark-mode` pada `<body>` atau `<html>`
